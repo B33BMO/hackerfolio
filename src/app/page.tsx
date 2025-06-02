@@ -1,103 +1,113 @@
-import Image from "next/image";
+import React from "react";
+
+// Panel component (add types for props)
+function Panel({
+  title,
+  children,
+  href,
+}: {
+  title: string;
+  children: React.ReactNode;
+  href?: string;
+}) {
+  const content = (
+    <div className="bg-glitch-panel bg-opacity-80 rounded-2xl shadow-glitch p-6 min-w-[240px] max-w-[300px] border border-glitch-cyan/30 hover:border-glitch-magenta/50 transition-all duration-300">
+      <h3 className="text-2xl font-mono text-glitch-magenta mb-2">{title}</h3>
+      <div className="font-mono text-glitch-cyan">{children}</div>
+    </div>
+  );
+  return href ? (
+    <a href={href} className="hover:scale-105 transition">
+      {content}
+    </a>
+  ) : (
+    content
+  );
+}
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-screen flex flex-col items-center justify-center bg-glitch-bg relative overflow-hidden">
+      {/* Glitchy scanline overlay */}
+      <div className="pointer-events-none absolute inset-0 z-20 animate-scan bg-gradient-to-b from-transparent via-white/5 to-transparent h-full w-full" />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      {/* Glitchy main title */}
+      <h1
+        className="text-6xl md:text-8xl font-mono font-bold text-glitch-cyan relative z-30 glitch"
+        data-text="bmo()"
+      >
+        <span className="block animate-glitch">
+          bmo<span className="text-glitch-magenta">()</span>
+        </span>
+      </h1>
+
+      {/* Subtitle */}
+      <h2 className="mt-4 text-xl md:text-3xl text-glitch-yellow font-mono z-30 animate-glitch">
+        Welcome..
+      </h2>
+
+      {/* Glitchy panels */}
+      <section className="mt-16 flex flex-col md:flex-row gap-8 z-30">
+        <Panel title="About">
+          <p>
+            IT Technician. 
+            <br />
+            <span className="text-glitch-yellow">
+            Builder of weird & wonderful tech.
+            </span>
+          </p>
+        </Panel>
+        <Panel title="Projects">
+          <ul className="space-y-2">
+            <li>• BytePDF</li>
+            <li>• ControlPoint</li>
+            <li>• GhostNav</li>
+            <li>• ...and more</li>
+          </ul>
+        </Panel>
+        <Panel title="Contact" href="mailto:bmo@bmo.guru">
+          <p className="break-all">bmo@bmo.guru</p>
+        </Panel>
+      </section>
+
+      {/* Fake terminal text flicker at bottom */}
+      <div className="absolute bottom-6 left-0 right-0 flex justify-center opacity-80 z-40">
+        <span className="font-mono text-xs text-glitch-cyan animate-glitch">
+          [~]&gt; Portfolio system active. Awaiting input...
+        </span>
+      </div>
+
+      {/* Glitch CSS */}
+      <style>{`
+        .glitch {
+          position: relative;
+        }
+        .glitch:before, .glitch:after {
+          content: attr(data-text);
+          position: absolute;
+          left: 0; width: 100%; overflow: hidden;
+          color: #ff00ea;
+          clip: rect(0, 900px, 0, 0);
+        }
+        .glitch:before {
+          animation: glitchTop 1.2s infinite linear alternate-reverse;
+          top: -2px;
+        }
+        .glitch:after {
+          animation: glitchBottom 1s infinite linear alternate-reverse;
+          left: 2px; color: #00ffe7; top: 2px;
+        }
+        @keyframes glitchTop {
+          0% { clip: rect(0, 900px, 0, 0); }
+          20% { clip: rect(0, 900px, 40px, 0); left: 2px; }
+          40% { clip: rect(0, 900px, 0, 0); left: 0; }
+        }
+        @keyframes glitchBottom {
+          0% { clip: rect(0, 900px, 0, 0); }
+          30% { clip: rect(20px, 900px, 70px, 0); left: -2px; }
+          60% { clip: rect(0, 900px, 0, 0); left: 0; }
+        }
+      `}</style>
+    </main>
   );
 }
