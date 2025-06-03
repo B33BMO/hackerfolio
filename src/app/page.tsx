@@ -45,7 +45,7 @@ export default function Home() {
       <h2 className="mt-4 text-xl md:text-3xl text-glitch-yellow font-mono z-30 animate-glitch">
         Welcome..
       </h2>
-
+ 
       {/* Glitchy panels */}
       <section className="mt-16 flex flex-col md:flex-row gap-8 z-30">
         <Panel title="About">
